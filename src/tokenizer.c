@@ -43,13 +43,14 @@ char *word_terminator(char *word)     //Returns pointer to last char in word
 int count_words(char *str)
 {
   int count = 0;
-
-  while (*str != '\0')
+  char *temp = str;
+  
+  while (*temp != '\0')
   {
-    if ((str = word_start(str)))
+    if ((temp = word_start(temp)))
       count++;
-    str = word_terminator(str);
-    str++;
+    temp = word_terminator(temp);
+    temp++;
   }
   return count;
 }
@@ -62,7 +63,7 @@ char *copy_str(char *intr, short len)
   {
     *strCopy++ = *intr++;
   }
-  return strCopy;
+  return (strCopy -= len);
 }
 
 
@@ -89,7 +90,7 @@ void print_tokens(char **tokens)
 {
   while (*tokens != 0)
   {
-    printf("%s\n", *tokens);
+    printf("%s\n", &tokens);
     *tokens++;
   }
 }
