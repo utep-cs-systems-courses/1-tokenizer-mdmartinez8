@@ -90,7 +90,7 @@ void print_tokens(char **tokens)
 {
   while (*tokens != 0)
   {
-    printf("%s\n", &tokens);
+    printf("%s\n", *tokens);
     *tokens++;
   }
 }
