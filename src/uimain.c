@@ -9,7 +9,7 @@ int main()
   int isRunning = 1;
   char *input = (char *)malloc(maxLength*sizeof(char));
   List* history = init_history();
-  //fputs("%d", history->root->id);
+  printf("%d\n", history->root->id); // To make sure first node is created properly
   while(isRunning)
   {
     fputs("Enter string to save.\tEnter !1 to view history.\n", stdout);
@@ -22,6 +22,8 @@ int main()
     }
     
     char **tokens = tokenize(input);
+    //Test  add_history(history, input);
+    //Test  printf("%s\n", history->root->str);
     print_tokens(tokens);
     //Test  printf("%s\n", word_start(input));
     //Test  printf("%s\n", word_terminator(input));
