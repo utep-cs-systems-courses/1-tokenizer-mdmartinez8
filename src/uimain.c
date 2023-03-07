@@ -12,7 +12,7 @@ int main()
   printf("%d\n", history->root->id); // To make sure first node is created properly
   while(isRunning)
   {
-    fputs("Enter string to save.\tEnter !1 to view history.\n", stdout);
+    fputs("Enter string to save.\tEnter !! to view history.\tEnter q to quit program.\n", stdout);
     fputs(">", stdout);
     gets(input);
     if (*input == 'q')
@@ -49,6 +49,6 @@ int main()
     //Test  printf("%d\n", count_words(input));
     //free_tokens(tokens);
   }
-  //free_history(history);
+  free_history(history);
   return 0;
 }

@@ -64,6 +64,11 @@ void print_history(List *list)
 
 void free_history(List *list)
 {
-
-
+  Item *temp = list->root;
+  while (temp != NULL)
+  {
+    free(temp);
+    temp = temp->next;
+  }
+  return;
 }
