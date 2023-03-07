@@ -10,6 +10,7 @@ List* init_history()
   Item* newRoot = (Item*)malloc(sizeof(Item));
   history->root = newRoot;
   history->root->id = 0;
+  history->root->next = NULL;
   // Small test printf("working\n");
   return history;
 }
@@ -17,33 +18,48 @@ List* init_history()
 void add_history(List *list, char *str)
 {
   Item *new = (Item*)malloc(sizeof(Item));
+  Item *temp = list->root;
   new->str = str;
-  if (list->root->id == 0)
+  new->next = NULL;
+  if (temp->id == 0)
   {
-    list->root->str = str;
-    list->root->id = 1;
+    temp->str = str;
+    temp->id = 1;
+    temp->next = NULL;
     return;
   }
 
-  while (list->root->next)
+  while (temp->next != NULL)
   {
-    list->root = list->root->next;
+    temp = temp->next;
   }
-  list->root->next = new;
-  new->id = list->root->id + 1;
+  temp->next = new;
+  new->id = temp->id + 1;
   return;
 }
 
 char *get_history(List *list, int id)
 {
-
-
+  char *noId = "History not found.\n";
+  Item *temp = list->root;
+  while (temp != NULL)
+    {
+      if (temp->id == id)
+	return temp->str;
+      temp = temp->next;
+    }
+  return noId;
 }
 
 void print_history(List *list)
 {
-
-
+  Item *temp = list->root;
+  while (temp != NULL)
+    {
+      printf("%d. %s\n", temp->id, temp->str);
+      temp = temp->next;
+    }
+  return;
 }
 
 void free_history(List *list)

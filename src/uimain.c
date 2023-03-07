@@ -20,19 +20,35 @@ int main()
       isRunning = 0;
       break;
     }
-    
+
+    if (*input == '!')
+    {
+      input++;
+      if (*input != '!')
+      {
+	int id = *input - '0';
+	printf("%s\n", get_history(history, id));
+      }else
+      {
+	print_history(history);
+      }
+      input--;
+    }
     char **tokens = tokenize(input);
-    //Test  add_history(history, input);
+
+    while (*tokens != 0)
+    {
+      add_history(history, *tokens);
+      *tokens++;
+    }
+    //add_history(history, input);
     //Test  printf("%s\n", history->root->str);
     print_tokens(tokens);
     //Test  printf("%s\n", word_start(input));
     //Test  printf("%s\n", word_terminator(input));
     //Test  printf("%d\n", count_words(input));
-    
-    printf("%s\n\n", input);
-
-
+    //free_tokens(tokens);
   }
-
+  //free_history(history);
   return 0;
 }
